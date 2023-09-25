@@ -1,8 +1,8 @@
-const NoteList = ({ notes }) => {
+const NoteList = ({ notes ,onDelete }) => {
   return (
     <div className="note-list">
       {notes.map((note) => {
-        return <NoteItem key={note.id} note={note} />;
+        return <NoteItem key={note.id} note={note} onDelete={onDelete} />;
       })}
     </div>
   );
@@ -10,8 +10,9 @@ const NoteList = ({ notes }) => {
 
 export default NoteList;
 
-const NoteItem = ({ note }) => {
+const NoteItem = ({ note , onDelete }) => {
 
+    
     const option = {year:"numeric",month:"long" , day:"numeric"}
     return (
     <div className="note-item">
@@ -21,12 +22,11 @@ const NoteItem = ({ note }) => {
           <p className="desc">{note.description}</p>
         </div>
         <div className="actions">
-          <button>❌</button>
+          <button onClick={()=> onDelete(note.id)}>❌</button>
           <input type="checkbox" />
         </div>
       </div>
       <div className="note-item__foter">
-        {" "}
         {new Date(note.createdAt).toLocaleDateString("en-US",option )}
       </div>
     </div>

@@ -18,7 +18,6 @@ const AddNewNote = ({ onAddNote }) => {
     setDescription("");
     onAddNote(newNote)
    
-    console.log(newNote);
   };
   const handleChange = (e) => setTitle(e.target.value);
   return (
