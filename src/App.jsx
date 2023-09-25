@@ -13,8 +13,7 @@ const App = () => {
         <div className="note-app">
           <AddNewNote onAddNote={handleNotes} />
           <div className="note-container">
-            {" "}
-            <NoteList />
+            <NoteList notes={notes} />
           </div>
         </div>
       </div>
