@@ -11,6 +11,14 @@ const App = () => {
     const filterdnotes = notes.filter((note) => note.id !== id);
     setNotes(filterdnotes);
   };
+  const handleCompletedNote = (id) => {
+    const newNotes = notes.map((note) =>
+      note.id === id ? { ...note, complited: !note.complited } : note
+    );
+
+   
+    setNotes(newNotes);
+  };
 
   return (
     <>
@@ -19,7 +27,11 @@ const App = () => {
         <div className="note-app">
           <AddNewNote onAddNote={handleNotes} />
           <div className="note-container">
-            <NoteList notes={notes} onDelete={handleDelete} />
+            <NoteList
+              notes={notes}
+              onDelete={handleDelete}
+              onComplete={handleCompletedNote}
+            />
           </div>
         </div>
       </div>
