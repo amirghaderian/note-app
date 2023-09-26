@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "./App.css";
 import AddNewNote from "./components/AddNewNote";
+import NoteHeader from "./components/NoteHeader";
 import NoteList from "./components/NoteList";
 import NoteStatus from "./components/NoteStatus";
 const App = () => {
   const [notes, setNotes] = useState([]);
+  const [sortBy, setSortBy] = useState("latest");
   const handleNotes = (newNote) => {
     setNotes((prevNotes) => [...prevNotes, newNote]);
   };
@@ -14,23 +16,29 @@ const App = () => {
   };
   const handleCompletedNote = (id) => {
     const newNotes = notes.map((note) =>
-      note.id === id ? { ...note, complited: !note.complited } : note
+      note.id === id ? { ...note, completed: !note.completed } : note
     );
-
-   
     setNotes(newNotes);
   };
+  let sortedNotes = notes;
+  const handleChange = (e) => {
+    setSortBy(e.target.value);
+    setNotes(sortedNotes);
+  };
+
 
   return (
     <>
       <div className="container">
-        <div className="note-header">note header</div>
+        <NoteHeader notes={notes} sortBy={sortBy} onSort={handleChange} />
         <div className="note-app">
           <AddNewNote onAddNote={handleNotes} />
           <div className="note-container">
-            <NoteStatus notes={notes}/>
+            <NoteStatus notes={notes} />
             <NoteList
-              notes={notes}
+              notes={sortedNotes}
+              sortBy={sortBy}
+              sortedNotes={sortedNotes}
               onDelete={handleDelete}
               onComplete={handleCompletedNote}
             />

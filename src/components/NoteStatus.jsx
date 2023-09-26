@@ -1,7 +1,7 @@
 const NoteStatus = ({ notes }) => {
   const allNotes = notes.length;
-  const complitedNotes = notes.filter((n) => n.complited).length;
-  const open = allNotes - complitedNotes;
+  const completedNotes = notes.filter((n) => n.completed).length;
+  const open = allNotes - completedNotes;
   return (
     <>
       {allNotes ? (
@@ -10,7 +10,7 @@ const NoteStatus = ({ notes }) => {
             All <span>{allNotes}</span>
           </li>
           <li>
-            Complited <span>{complitedNotes}</span>
+          completed <span>{completedNotes}</span>
           </li>
           <li>
             Open <span>{open}</span>

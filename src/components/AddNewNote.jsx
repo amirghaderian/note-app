@@ -11,7 +11,7 @@ const AddNewNote = ({ onAddNote , onComplete }) => {
       title,
       description,
       id: Date.now(),
-      complited: false,
+      completed: false,
       createdAt: new Date().toISOString(),
     };
     setTitle("");
